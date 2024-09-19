@@ -203,7 +203,7 @@
 // };
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 
@@ -257,17 +257,14 @@ const Approach = () => {
 
 export default Approach;
 
-const Card = ({
-  title,
-  icon,
-  children,
-  des,
-}: {
+interface CardProps {
   title: string;
-  icon: React.ReactNode;
-  children?: React.ReactNode;
+  icon: ReactNode;
+  children?: ReactNode;
   des: string;
-}) => {
+}
+
+const Card = ({ title, icon, children, des }: CardProps) => {
   const [hovered, setHovered] = useState(false);
   return (
     <div
@@ -332,7 +329,11 @@ const AceternityIcon = ({ order }: { order: string }) => {
   );
 };
 
-export const Icon = ({ className, ...rest }: any) => {
+interface IconProps {
+  className: string;
+}
+
+export const Icon = ({ className, ...rest }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -347,3 +348,4 @@ export const Icon = ({ className, ...rest }: any) => {
     </svg>
   );
 };
+

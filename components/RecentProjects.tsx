@@ -3,17 +3,19 @@
 import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/3d-pin";
+import Image from "next/image"; // Using next/image for optimized images
 
 const RecentProjects = () => {
   return (
     <div
       id="projects"
       className="py-20 relative"
-      style={{ zIndex: 1 }} // Set a lower z-index value
+      style={{ zIndex: 1 }} // Setting a z-index value
     >
       <h1 className="heading">
         A small selection of <span className="text-purple">recent projects</span>
       </h1>
+
       <div className="flex flex-wrap items-center justify-center p-4 gap-x-16 gap-y-8 mt-10">
         {projects.map((item) => (
           <div
@@ -26,11 +28,19 @@ const RecentProjects = () => {
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
-                  <img src="/bg.png" alt="bgimg" />
+                  <Image
+                    src="/bg.png"
+                    alt="Background image"
+                    layout="fill" // Ensures responsive behavior
+                    objectFit="cover" // Makes the image cover the container
+                    className="w-full h-full"
+                  />
                 </div>
-                <img
+                <Image
                   src={item.img}
-                  alt="cover"
+                  alt={`${item.title} cover image`} // More descriptive alt text for accessibility
+                  width={570}
+                  height={200}
                   className="z-10 absolute bottom-0"
                 />
               </div>
@@ -59,7 +69,13 @@ const RecentProjects = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <Image
+                        src={icon}
+                        alt={`icon-${index}`} // Make alt text more descriptive for each icon
+                        width={24}
+                        height={24}
+                        className="p-2"
+                      />
                     </div>
                   ))}
                 </div>
@@ -80,3 +96,4 @@ const RecentProjects = () => {
 };
 
 export default RecentProjects;
+
